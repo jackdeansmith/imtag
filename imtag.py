@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 from sys import argv
+from sys import stderr
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.image as mpimg
 
+usage = """usage: imtag.py input_image output_file
+Click to tag, press space to finish tagging, press escape to clear tags."""
+
 # Simple function for error printing
 def eprint(*args, **kwargs):
-    print(*args, file=sys.stderr, **kwargs)
+    print(*args, file=stderr, **kwargs)
 
 # Check to make sure the user supplied the right number of args to the tagging
 # script.
 if(len(argv) != 3):
-    #TODO make a nice error message here
+    eprint("Wrong number of args!")
+    eprint()
+    eprint(usage)
     exit(1)
 
 # the first positional arg is the name of the file we are trying to tag
@@ -24,7 +30,7 @@ tag_filename = argv[2]
 try:
     img=mpimg.imread(image_filename)
 except(FileNotFoundError):
-    #TODO nice error message here
+    eprint("Could not find input imagefile: {}".format(image_filename))
     exit(1)
 
 # List of the x and y positions selected, ordered in the order of their
