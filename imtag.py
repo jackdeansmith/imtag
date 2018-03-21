@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.image as mpimg
 
+# Simple function for error printing
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
 # Check to make sure the user supplied the right number of args to the tagging
 # script.
 if(len(argv) != 3):
